@@ -47,7 +47,7 @@ public class App {
             actions.initialize();
             actions.login(account);
             System.out.println("Start counting!");
-            actions.isCorrectAccount(account);
+            System.out.println(actions.isCorrectAccount(account));
 
             //actions.promo(account);
             //actions.logout();
