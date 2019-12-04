@@ -10,17 +10,16 @@ public class App {
     private static boolean isLoggedIn = false;
 
     private static String nickname;
-    private static String emailBody = "trickster";
-    private final static String password = "Timetofade1";
-    private final static String  postfix = "@mail.com";
+    private static String emailBody = "trishasoso";
+    private final static String password = "zanasizavas1!";
+    private final static String  postfix = "@gmail.ru";
     private static String email;
 
     private static String url = "https://icarus.101xp.com/";
 
 
-    private static int firstIteration = 1;
-    private static int lastIteration = 100;
-    private static int currIteration = 5;
+    private static int firstIteration = 177;
+    private static int lastIteration = 257;
     private static final int failIterations = 3;
 
 
@@ -30,25 +29,21 @@ public class App {
 
 
 
-    public static void main(String[] args) throws InterruptedException, NotLoggedInException {
+    public static void main(String[] args) throws InterruptedException {
 
-
-       // for (int currIteration = firstIteration; currIteration <= lastIteration; currIteration++) {
+        Actions actions = new Actions(driver, url);
+        actions.initialize();
+       for (int currIteration = firstIteration; currIteration <= lastIteration; currIteration++) {
                 //You code here e.g.:
 
-            email =currIteration + emailBody + currIteration + postfix;
-            nickname =currIteration + emailBody + currIteration;
+            email =currIteration + emailBody + postfix;
+            nickname =currIteration +emailBody;
             Account account = new Account(nickname, password, email);
             System.out.println("account email: "+account.getEmail());
             System.out.println("account nickname: "+account.getNickname());
 
-            Actions actions = new Actions(driver, url);
-
-            actions.initialize();
-            actions.login(account);
-            System.out.println("Start counting!");
-            System.out.println(actions.isCorrectAccount(account));
-
+            actions.register(account);
+            //System.out.println("Start counting!");
             //actions.promo(account);
             //actions.logout();
             //System.out.println(actions.isCorrectAccount(account));
@@ -56,7 +51,7 @@ public class App {
 
 
 
-       // }
+       }
     }
 
 

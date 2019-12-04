@@ -19,7 +19,7 @@ private String url;
 
     public void initialize() {
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.get(url);
     }
@@ -50,13 +50,13 @@ private String url;
         driver.get(url);
     }
 
-public boolean isCorrectAccount (Account account) throws InterruptedException {
+    public boolean isCorrectAccount (Account account) throws InterruptedException {
 
 
-        if (!isLoggedIn()) {
-            System.out.println("Method:isCorrectAccount::Not logged in. Logging in...");
-            login(account);
-        }
+        //if (!isLoggedIn()) {
+        //    System.out.println("Method:isCorrectAccount::Not logged in. Logging in...");
+         //   login(account);
+       // }
         driver.switchTo().frame("auth");
         String nick = driver.findElement(By.xpath("//span[@class='display-name mp-hide']")).getText();
         driver.switchTo().defaultContent();
@@ -69,6 +69,7 @@ public boolean isCorrectAccount (Account account) throws InterruptedException {
         }
 
 }
+
     public boolean _isCorrectAccount (Account account) throws NotLoggedInException {
 
                 driver.get("https://ru.101xp.com/profile/settings/personal-data");
@@ -89,6 +90,23 @@ public boolean isCorrectAccount (Account account) throws InterruptedException {
 
     }
 
+    public void register (Account account) throws InterruptedException {
+        driver.get("https://portal-id-beta-ru.101xp.com/sessions/signup?theme=icarus");
+        driver.findElement(By.xpath("//input[@formcontrolname='email']")).sendKeys(account.getEmail());
+        driver.findElement(By.xpath("//input[@formcontrolname='password']")).sendKeys(account.getPassword());
+        driver.findElement(By.xpath("//input[@formcontrolname='username']")).sendKeys(account.getNickname());
+        driver.findElement(By.xpath("//*[contains(text(), 'Регистрация')]")).click();
+        Thread.sleep(5000);
+        driver.get(url);
+        if (isCorrectAccount(account)) {
+            System.out.println("Method:register:: New account "+account.getEmail()+" registered!");
+        }
+        else {
+            System.out.println( account.getEmail()+": Something went wrong!");
+            logout();
+        }
+
+    }
 
     public void login (Account account) throws InterruptedException {
         //if (!driver.getCurrentUrl().matches("https://icarus.101xp.com/")) { driver.get(url); }
@@ -146,14 +164,14 @@ public boolean isCorrectAccount (Account account) throws InterruptedException {
     }
 
     public void promo (Account account) throws InterruptedException {
-        if (!isLoggedIn()) {
-            login(account);
-        }
-        if (!isCorrectAccount(account)) {
-            System.out.println("Method:promo::Account is incorrect! re-logging...");
-            logout();
-            login(account);
-        }
+        //if (!isLoggedIn()) {
+        //    login(account);
+        //}
+        //if (!isCorrectAccount(account)) {
+        //    System.out.println("Method:promo::Account is incorrect! re-logging...");
+        //    logout();
+        //    login(account);
+        //}
 
         String arrow = "//div[contains(@class,'adaptive menu-1')]//li[@class='menu-item menu-item-18 menu-item-level-0 menu-item-has-children']//div[@class='menu-item-arrow']//div";
 
