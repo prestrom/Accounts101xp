@@ -92,19 +92,22 @@ private String url;
 
     public void register (Account account) throws InterruptedException {
         driver.get("https://portal-id-beta-ru.101xp.com/sessions/signup?theme=icarus");
+        Thread.sleep(1000);
         driver.findElement(By.xpath("//input[@formcontrolname='email']")).sendKeys(account.getEmail());
         driver.findElement(By.xpath("//input[@formcontrolname='password']")).sendKeys(account.getPassword());
         driver.findElement(By.xpath("//input[@formcontrolname='username']")).sendKeys(account.getNickname());
         driver.findElement(By.xpath("//*[contains(text(), 'Регистрация')]")).click();
         Thread.sleep(5000);
-        driver.get(url);
-        if (isCorrectAccount(account)) {
-            System.out.println("Method:register:: New account "+account.getEmail()+" registered!");
-        }
-        else {
-            System.out.println( account.getEmail()+": Something went wrong!");
-            logout();
-        }
+        //driver.get(url);
+        //Thread.sleep(5000);
+        System.out.println("Method:register:: New account "+account.getEmail()+" registered!");
+        //if (isCorrectAccount(account)) {
+        //    System.out.println("Method:register:: New account "+account.getEmail()+" registered!");
+       // }
+      //  else {
+       //     System.out.println( account.getEmail()+": Something went wrong!");
+       //     logout();
+       // }
 
     }
 

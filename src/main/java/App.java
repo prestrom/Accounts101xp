@@ -7,19 +7,18 @@ public class App {
 
     private static WebDriver driver;
 
-    private static boolean isLoggedIn = false;
 
     private static String nickname;
-    private static String emailBody = "trishasoso";
-    private final static String password = "zanasizavas1!";
-    private final static String  postfix = "@gmail.ru";
+    private static String emailBody = "stupidloli";
+    private final static String password = "T1metolol";
+    private final static String  postfix = "@mail.com";
     private static String email;
 
     private static String url = "https://icarus.101xp.com/";
 
 
-    private static int firstIteration = 177;
-    private static int lastIteration = 257;
+    private static int firstIteration = 138;
+    private static int lastIteration = 1100;
     private static final int failIterations = 3;
 
 
@@ -36,11 +35,11 @@ public class App {
        for (int currIteration = firstIteration; currIteration <= lastIteration; currIteration++) {
                 //You code here e.g.:
 
-            email =currIteration + emailBody + postfix;
-            nickname =currIteration +emailBody;
+            email = currIteration + emailBody+ postfix;
+            nickname = currIteration + emailBody;
             Account account = new Account(nickname, password, email);
-            System.out.println("account email: "+account.getEmail());
-            System.out.println("account nickname: "+account.getNickname());
+            //System.out.println("account email: "+account.getEmail());
+            //System.out.println("account nickname: "+account.getNickname());
 
             actions.register(account);
             //System.out.println("Start counting!");
